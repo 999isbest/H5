@@ -7,13 +7,15 @@
     <meta charset="utf-8" />
     <meta property="og:type" content="webpage" />
     <meta property="og:title" content="无标题" />
-    <meta property="og:image" content="https://i.u.h5mc.com/c/bkpa/brd2/images/addpic.png" />
+    <!-- 图片链接替换 -->
+    <meta property="og:image" content="https://raw.githubusercontent.com/999isbest/H5/refs/heads/main/5d3e91d90461267ca9372abf.png" />
     <meta property="og:image1" content="" />
     <meta property="og:image2" content="" />
     <meta property="og:url" content="https://i.u.h5mc.com/c/bkpa/brd2/index.html" />
     <meta property="og:description" content="" />
     <meta itemprop="name" content="无标题"/>
-    <meta itemprop="image" content="https://i.u.h5mc.com/c/bkpa/brd2/images/addpic.png" />
+    <!-- 图片链接替换 -->
+    <meta itemprop="image" content="https://raw.githubusercontent.com/999isbest/H5/refs/heads/main/5d3e91d90461267ca9372abf.png" />
     <meta name="description" itemprop="description" content="" />
     <!-- watermark 参数测试 -->
     <meta property="use_watermark" content="0" />
@@ -45,9 +47,10 @@
         "font_sub_path": "fonts",
         "css_sub_path": "css",
         "description":"",
-        "thumb":"https://i.u.h5mc.com/c/bkpa/brd2/images/addpic.png",
+        <!-- 图片链接替换 -->
+        "thumb":"https://raw.githubusercontent.com/999isbest/H5/refs/heads/main/5d3e91d90461267ca9372abf.png",
         "render_mode":"normal",
-        "receiptUrl": "",     // 邀请卡回执提交地址
+        "receiptUrl": "",
         "ticketUrl": "//card.mugeda.com/weixin/card/tickets/default_wx_js_ticket.json",       // 获取微信认证票据的地址
         "eventUrl": ""         // 上报事件统计的地址
     };
@@ -119,30 +122,26 @@ if (!_mrmcp['creative_path']) {
         var href = location.protocol +'//' + location.host + location.pathname;
         _mrmcp['creative_path'] = href.substr(0, href.lastIndexOf('/') + 1);
     }
-    else
+    else {
+        var idx = src.lastIndexOf('/');
         _mrmcp['creative_path'] = src.substr(0, idx + 1);
+    }
 }
 
 if (_mrmcp['host']){
     var pathNames = ['creative_path', 'common_path'];
     for (var i = 0, l = pathNames.length; i < l; i ++) {
         var pathName = pathNames[i];
-
         if (_mrmcp[pathName]) {
             var pathOriStr = _mrmcp[pathName];
             if(pathOriStr.indexOf('//') === 0) pathOriStr = location.protocol + pathOriStr;
             var pattern = /^(?:(\w+):\/\/)?(?:(\w+):?(\w+)?@)?([^:\/\?#]+)(?::(\d+))?(\/[^\?#]+)?(?:\?([^#]+))?(?:#(\w+))?/;
             var r = pattern.exec(pathOriStr);
-
             _mrmcp[pathName] = [ _mrmcp[pathName] ];
             for (var j = 0, k = _mrmcp['host'].length; j < k; j ++) {
                 var host = _mrmcp['host'][j];
                 var s = '';
-                //if(r[1]) s += r[1] + ':'; //http
-                //s += '//';
-                //if(r[2]) s += r[2] + ':'; //username
-                //if(r[3]) s += r[3] + '@'; //password
-                s += host; //host
+                s += host;
                 if (r[6]) s += r[6];
                 if (r[7]) s += '?' + r[7];
                 if (r[8]) s += '#' + r[8];
@@ -154,7 +153,7 @@ if (_mrmcp['host']){
 
     "default-start";
 window.Mugeda = window.Mugeda || { data: {} };
-window.Mugeda.loadProcessHandle = window.Mugeda.loadProcessHandle || {};
+Mugeda.loadProcessHandle = window.Mugeda.loadProcessHandle || {};
 Mugeda.loadProcessHandle['default'] = function(opt) {
     opt = opt || {};
     var thisAni = opt.thisAni;
@@ -328,7 +327,7 @@ Mugeda.loadProcessHandle['default'].prototype.remove = function () {
 };
 window.lineSplit = "default-end";"bar-start";
 window.Mugeda = window.Mugeda || { data: {}};
-window.Mugeda.loadProcessHandle = window.Mugeda.loadProcessHandle || {};
+Mugeda.loadProcessHandle = window.Mugeda.loadProcessHandle || {};
 Mugeda.isMobile = navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i);
 
 Mugeda.loadProcessHandle.bar = function (opt) {
@@ -338,16 +337,15 @@ Mugeda.loadProcessHandle.bar = function (opt) {
 
     this.type = 'bar';
     this.dom = opt.stageDom || thisAni.dom;
-    loadInfo.backgroundImage = loadInfo.backgroundImage || ''//'http://ww3.sinaimg.cn/large/6efa645cjw1emifo2gt0dj21kw11x4la.jpg';
-    loadInfo.backgroundColor = (loadInfo.backgroundColor || 'black')//'yellow';
-    // 以/结尾的是css3_convertor转义的cdn地址，无实际图片
-    loadInfo.logoImage = loadInfo.logoImage ? (/\/$/.test(loadInfo.logoImage) ? '': loadInfo.logoImage): ''//'http://ww3.sinaimg.cn/large/6efa645cjw1emifo2gt0dj21kw11x4la.jpg';
+    loadInfo.backgroundImage = loadInfo.backgroundImage || ''
+    loadInfo.backgroundColor = (loadInfo.backgroundColor || 'black')
+    loadInfo.logoImage = loadInfo.logoImage ? (/\/$/.test(loadInfo.logoImage) ? '': loadInfo.logoImage): ''
     loadInfo.progressColor = (loadInfo.progressColor || '#d60');
     loadInfo.progressBackground = (loadInfo.progressBackground || '#fff');
     loadInfo.progressPosition = loadInfo.progressPosition || '20';
     loadInfo.messageText = loadInfo.messageText || '';
     loadInfo.messageColor = (loadInfo.messageColor || '#fff');
-    loadInfo.messageSize = loadInfo.messageSize || 12;
+    loadInfo.messageSize = (loadInfo.messageSize || 12);
     loadInfo.textLoading = parseInt(loadInfo.textLoading) || 0;
     loadInfo.logoWidth = Math.round(((loadInfo.logoWidth || 124) / (opt.thisAni.width / this.dom.parentNode.offsetWidth) * 100)) / 100;
     this.loadInfo = loadInfo;
@@ -432,7 +430,6 @@ Mugeda.loadProcessHandle.bar.prototype.update = function (num, all, opt) {
 
 };
 Mugeda.loadProcessHandle.bar.prototype.remove = function () {
-    //return;
     var self = this;
     setTimeout(function(){
        self.isOver = true;
@@ -713,7 +710,7 @@ Mugeda.Loader.prototype.start = function () {
     consoleDebug = true;
   } else if (sessionStorage && (sessionStorage.getItem('consoleDebug'))) {
     consoleDebug = true;
-  } else if (localStorage && localStorage.getItem('consoleDebug')) {
+  } else if (localStorage && (localStorage.getItem('consoleDebug'))) {
     consoleDebug = true;
   }
   
